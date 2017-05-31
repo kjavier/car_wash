@@ -15,7 +15,7 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 
 # Assets and template related gems
-gem 'jquery-rails'
+gem 'rails-ujs'
 gem 'turbolinks'
 gem 'slim'
 gem 'es5-shim-rails'

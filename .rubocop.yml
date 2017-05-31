@@ -1,0 +1,17 @@
+Metrics/LineLength:
+  Max: 140
+
+Style/TrailingWhitespace:
+  Enabled: false
+
+Style/AlignArray:
+  Enabled: false
+
+Style/AlignHash:
+  Enabled: false
+
+Style/AlignParameters:
+  Enabled: false
+
+Documentation:
+  Enabled: false
