@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.0'
 
@@ -16,6 +15,8 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 
 # Assets and template related gems
+gem 'jquery-rails'
+gem 'turbolinks'
 gem 'slim'
 gem 'es5-shim-rails'
 gem 'therubyracer', '~> 0.12.3'
@@ -24,9 +25,6 @@ gem 'uglifier'
 
 # Pagination
 gem 'kaminari', branch: 'master'
-
-# Others
-gem 'foreman'
 
 group :development do
   gem 'awesome_print'
@@ -73,13 +71,6 @@ group :development, :test do
   gem 'fabrication'
   gem 'faker'
   gem 'bullet'
-  gem 'capybara'
-  gem 'capybara-screenshot'
-  gem 'poltergeist'
-  gem 'chromedriver-helper', require: ['selenium_chrome'].include?(ENV['DRIVER'])
-  gem 'selenium-webdriver', require: !['poltergeist', 'poltergeist_errors_ok', 'webkit'].include?(ENV['DRIVER'])
-  gem 'json-schema-rspec'
-  gem 'coveralls', require: false
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
 end
 
