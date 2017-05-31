@@ -15,6 +15,7 @@ gem 'mysql2'
 gem 'puma', '~> 3.7'
 
 # Assets and template related gems
+gem 'jquery-rails'
 gem 'rails-ujs'
 gem 'turbolinks'
 gem 'slim'
@@ -22,6 +23,7 @@ gem 'es5-shim-rails'
 gem 'therubyracer', '~> 0.12.3'
 gem 'sass-rails'
 gem 'uglifier'
+gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 
 # Pagination
 gem 'kaminari', branch: 'master'
@@ -65,7 +67,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'database_cleaner'
   gem 'simplecov', require: false
-  gem 'shoulda-matchers', '~> 3.0'
+  gem 'shoulda-matchers', git: 'https://github.com/thoughtbot/shoulda-matchers.git', branch: 'rails-5'
   gem 'shoulda-kept-respond-with-content-type'
   gem 'rails-controller-testing'
   gem 'fabrication'

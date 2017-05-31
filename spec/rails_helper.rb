@@ -10,12 +10,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 
 require 'spec_helper'
 require 'rspec/rails'
+require 'shoulda_helper'
 
-require 'capybara/rspec'
-require 'capybara-screenshot/rspec'
-require 'webmock/rspec'
-
-WebMock.disable_net_connect!(allow_localhost: true)
+ActiveRecord::Migration.maintain_test_schema!
 
 Dir["#{File.join(File.dirname(__FILE__), 'support')}/*.rb"].each { |file| require file }
 
