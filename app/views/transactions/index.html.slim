@@ -25,10 +25,11 @@
         tbody
           - @sales.each do |sale|
             tr
-              td= sale.license_plate
+              td= link_to sale.license_plate, edit_transaction_path(sale)
               td= sale.vehicle_type
               td= sale.amount
               td= sale.has_mud_on_bed
               td= sale.with_bed_let_down
+              td= sale.current_state
 
       .d-block.mx-auto= paginate(@sales)

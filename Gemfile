@@ -28,6 +28,9 @@ gem 'bootstrap', git: 'https://github.com/twbs/bootstrap-rubygem'
 # Pagination
 gem 'kaminari', branch: 'master'
 
+# Statemachine
+gem 'statesman'
+
 group :development do
   gem 'awesome_print'
   gem 'hirb'

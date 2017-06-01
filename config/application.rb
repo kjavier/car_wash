@@ -30,5 +30,7 @@ module CarWash
     
     config.eager_load_paths += %W(#{config.root}/app/form_models)
     config.eager_load_paths += %W(#{config.root}/app/validators)
+    config.eager_load_paths += %W(#{config.root}/app/state_machines)
+    config.eager_load_paths += %W(#{config.root}/app/states)
   end
 end

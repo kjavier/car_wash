@@ -10,7 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601110715) do
+ActiveRecord::Schema.define(version: 20170601134645) do
+
+  create_table "sale_transitions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "to_state", null: false
+    t.text "metadata"
+    t.integer "sort_key", null: false
+    t.integer "sale_id", null: false
+    t.boolean "most_recent"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["sale_id", "most_recent"], name: "index_sale_transitions_parent_most_recent", unique: true
+    t.index ["sale_id", "sort_key"], name: "index_sale_transitions_parent_sort", unique: true
+  end
 
   create_table "sales", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "vehicle_id"

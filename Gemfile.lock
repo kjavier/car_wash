@@ -319,6 +319,7 @@ GEM
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
     stackprof (0.2.10)
+    statesman (2.0.1)
     temple (0.8.0)
     therubyracer (0.12.3)
       libv8 (~> 3.16.14.15)
@@ -402,6 +403,7 @@ DEPENDENCIES
   spring-commands-rspec
   spring-watcher-listen (~> 2.0.0)
   stackprof
+  statesman
   therubyracer (~> 0.12.3)
   turbolinks
   tzinfo-data
