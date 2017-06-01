@@ -7,11 +7,11 @@ module SaleState
     transition_to!(:started)
   end
 
-  def finished!
+  def finish!
     transition_to!(:finished)
   end
 
-  def paid!
+  def pay!
     transition_to!(:paid)
   end
 end

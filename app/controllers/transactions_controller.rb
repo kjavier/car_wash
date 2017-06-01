@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class TransactionsController < ApplicationController
-  before_action :load_step, except: %i[index edit update validate_license_plate validate_step]
+  before_action :load_step, except: %i[index edit update validate_license_plate validate_step change_status]
 
   def index
+    session[:sale_params] = nil
     @sales = Sale.includes(vehicle: :vehicle_type).order('created_at desc').page(params[:page])
   end
 
@@ -42,6 +43,21 @@ class TransactionsController < ApplicationController
     else
       render current_step
     end
+  end
+
+  def change_status
+    @sale = Sale.find(params[:transaction_id])
+
+    case @sale.current_state
+    when 'pending'
+      @sale.start!
+    when 'started'
+      @sale.finish!
+    when 'finished'
+      @sale.pay!
+    end
+
+    redirect_to transactions_path, notice: 'Transaction successfully saved!'
   end
 
   private

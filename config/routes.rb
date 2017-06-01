@@ -7,5 +7,7 @@ Rails.application.routes.draw do
       get 'new/step2', to: 'transactions#step2'
       post :validate_step
     end
+      
+    put :change_status
   end
 end

@@ -1,0 +1,9 @@
+en:
+  transactions:
+    index:
+      links:
+        sales:
+          states:
+            started: Start
+            finished: Finish
+            paid: Pay

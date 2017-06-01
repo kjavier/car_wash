@@ -18,7 +18,8 @@ class Sale < ApplicationRecord
   accepts_nested_attributes_for :vehicle
   
   delegate :license_plate, :vehicle_type, to: :vehicle 
-  delegate :can_transition_to?, :transition_to!, :transition_to, :current_state, to: :state_machine
+  delegate :allowed_transitions, :can_transition_to?, :transition_to!, :transition_to, :current_state,
+    to: :state_machine
 
   validates_with BedValidator 
   

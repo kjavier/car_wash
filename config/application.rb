@@ -28,6 +28,8 @@ module CarWash
     # Don't generate system test files.
     config.generators.system_tests = nil
     
+    config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.yml').to_s]
+    
     config.eager_load_paths += %W(#{config.root}/app/form_models)
     config.eager_load_paths += %W(#{config.root}/app/validators)
     config.eager_load_paths += %W(#{config.root}/app/state_machines)
