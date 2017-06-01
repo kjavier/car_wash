@@ -3,7 +3,9 @@
 class TransactionsController < ApplicationController
   before_action :load_step, except: %i[index validate_license_plate validate_step]
 
-  def index; end
+  def index
+    @sales = Sale.all.page(params[:page])
+  end
 
   def validate_step
     session[:sale_params] ||= {}

@@ -8,3 +8,27 @@
     .col-lg-12
       .alert.alert-success.m-t-20 role='alert'
         = flash[:notice]
+
+.row
+  .col-lg-12
+    .m-t-20
+      table.table.table-hover
+        thead.thead-default
+          tr
+            th License Plate
+            th Type
+            th Amount
+            th Mud on Bed?
+            th Bed Let Down?
+            th Status
+
+        tbody
+          - @sales.each do |sale|
+            tr
+              td= sale.license_plate
+              td= sale.vehicle_type
+              td= sale.amount
+              td= sale.has_mud_on_bed
+              td= sale.with_bed_let_down
+
+      .d-block.mx-auto= paginate(@sales)
