@@ -10,11 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601090818) do
+ActiveRecord::Schema.define(version: 20170601110715) do
 
   create_table "sales", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "vehicle_id"
     t.float "amount", limit: 24, default: 0.0
+    t.boolean "has_mud_on_bed", default: false
+    t.boolean "with_bed_let_down", default: false
     t.index ["vehicle_id"], name: "index_sales_on_vehicle_id"
   end
 

@@ -7,7 +7,7 @@ class TransactionsController < ApplicationController
 
   def validate_step
     session[:sale_params] ||= {}
-    session[:sale_params] = session[:sale_params].merge(sale_params)
+    session[:sale_params] = session[:sale_params].deep_merge(sale_params.as_json)
     @step = process_step(current_step)
 
     if @step.valid?
@@ -22,7 +22,7 @@ class TransactionsController < ApplicationController
   def create
     if @step.sale.save
       session[:sale_params] = nil
-      redirect_to root_path, notice: 'Transaction succesfully saved!'
+      redirect_to transactions_url, notice: 'Transaction succesfully saved!'
     else
       redirect_to action: SaleFormModel::STEPS.first, alert: 'A problem occured while saving this transaction.'
     end
@@ -45,7 +45,8 @@ class TransactionsController < ApplicationController
   end
 
   def sale_params 
-    params.require(:sale).permit(vehicle_attributes: [:license_plate])
+    params.require(:sale).permit(:has_mud_on_bed, :with_bed_let_down,
+                                 vehicle_attributes: [:license_plate, :vehicle_type_id])
   end
 
   def current_step

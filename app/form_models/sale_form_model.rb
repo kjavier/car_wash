@@ -17,19 +17,18 @@ module SaleFormModel
         @sale.build_vehicle
         @vehicle = @sale.vehicle
       else
-        @vehicle = process_vehicle(attributes[:vehicle_attributes])
+        @vehicle = process_vehicle(attributes['vehicle_attributes'])
         @sale.vehicle = @vehicle
       end
-
-      pr attributes.inspect
-      pr @vehicle.inspect
     end
 
     private
 
     def process_vehicle(attributes)
       if attributes.present?
-        return Vehicle.find_by_license_plate(attributes[:license_plate]) || @sale.vehicle
+        data = Vehicle.find_by_license_plate(attributes['license_plate'])
+        
+        return data if data.present?
       end
 
       @sale.vehicle
@@ -43,5 +42,6 @@ module SaleFormModel
   end
 
   class Step2 < Base
+    validates :vehicle_type_id, presence: true
   end
 end 
