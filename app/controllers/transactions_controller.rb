@@ -4,7 +4,7 @@ class TransactionsController < ApplicationController
   before_action :load_step, except: %i[index edit update validate_license_plate validate_step]
 
   def index
-    @sales = Sale.all.page(params[:page])
+    @sales = Sale.includes(vehicle: :vehicle_type).order('created_at desc').page(params[:page])
   end
 
   def edit

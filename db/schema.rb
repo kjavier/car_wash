@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601134645) do
+ActiveRecord::Schema.define(version: 20170601151534) do
 
   create_table "sale_transitions", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "to_state", null: false
@@ -29,17 +29,23 @@ ActiveRecord::Schema.define(version: 20170601134645) do
     t.float "amount", limit: 24, default: 0.0
     t.boolean "has_mud_on_bed", default: false
     t.boolean "with_bed_let_down", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["vehicle_id"], name: "index_sales_on_vehicle_id"
   end
 
   create_table "vehicle_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "name", null: false
     t.float "price", limit: 24, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "vehicles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string "license_plate", null: false
     t.bigint "vehicle_type_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["vehicle_type_id"], name: "index_vehicles_on_vehicle_type_id"
   end
 
