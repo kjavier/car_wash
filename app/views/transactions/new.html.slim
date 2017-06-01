@@ -1,0 +1,16 @@
+.row
+  .col-lg-12
+    h4.m-b-30 New Transaction
+
+.row
+  .col-lg-12
+    = form_for @sale, url: transactions_path  do |f|
+      = f.fields_for :vehicle do |builder|
+        .form-group
+          = builder.label :type
+          = builder.select :type, Vehicle::TYPES.collect { |v| [v[0].to_s.titleize, v[0]] },
+            { include_blank: true }, class: 'form-control custom-select'
+        
+        .form-group
+          = builder.label :license_plate
+          = builder.text_field :license_plate, class: 'form-control'

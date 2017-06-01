@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Sale < ApplicationRecord
-  has_one :vehicle
+  belongs_to :vehicle
 
   accepts_nested_attributes_for :vehicle
 end

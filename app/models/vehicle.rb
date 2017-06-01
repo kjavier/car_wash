@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class Vehicle < ApplicationRecord
-  TYPES = %w[car truck].freeze
+  TYPES = [[:car, 5], [:truck, 10]].freeze
 
-  belongs_to :sale
+  has_many :sales
 end

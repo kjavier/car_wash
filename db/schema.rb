@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601050951) do
+ActiveRecord::Schema.define(version: 20170601052047) do
 
   create_table "sales", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.bigint "vehicles_id"
+    t.bigint "vehicle_id"
     t.float "amount", limit: 24, default: 0.0
-    t.index ["vehicles_id"], name: "index_sales_on_vehicles_id"
+    t.index ["vehicle_id"], name: "index_sales_on_vehicle_id"
   end
 
   create_table "vehicles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
@@ -23,5 +23,5 @@ ActiveRecord::Schema.define(version: 20170601050951) do
     t.string "license_plate", null: false
   end
 
-  add_foreign_key "sales", "vehicles", column: "vehicles_id"
+  add_foreign_key "sales", "vehicles"
 end
