@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170601052047) do
+ActiveRecord::Schema.define(version: 20170601090818) do
 
   create_table "sales", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.bigint "vehicle_id"
@@ -18,9 +18,15 @@ ActiveRecord::Schema.define(version: 20170601052047) do
     t.index ["vehicle_id"], name: "index_sales_on_vehicle_id"
   end
 
+  create_table "vehicle_types", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string "name", null: false
+    t.float "price", limit: 24, null: false
+  end
+
   create_table "vehicles", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
-    t.string "type", null: false
     t.string "license_plate", null: false
+    t.bigint "vehicle_type_id"
+    t.index ["vehicle_type_id"], name: "index_vehicles_on_vehicle_type_id"
   end
 
   add_foreign_key "sales", "vehicles"

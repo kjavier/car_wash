@@ -1,16 +1,25 @@
 .row
   .col-lg-12
-    h4.m-b-30 New Transaction
+    h4.m-b-30 New Transaction Step 2
 
 .row
   .col-lg-12
-    = form_for @sale, url: transactions_path  do |f|
-      = f.fields_for :vehicle do |builder|
-        .form-group
-          = builder.label :type
-          = builder.select :type, Vehicle::TYPES.collect { |v| [v[0].to_s.titleize, v[0]] },
-            { include_blank: true }, class: 'form-control custom-select'
-        
-        .form-group
-          = builder.label :license_plate
-          = builder.text_field :license_plate, class: 'form-control'
+    .highlight
+      = form_for @step.sale, as: :sale, url: validate_step_transactions_path do |f|
+        = render partial: 'shared/errors', locals: { object: @step }
+
+        = hidden_field_tag :current_step, 'step1'
+
+        = f.fields_for :vehicle_attributes do |builder|
+          .form-group
+            = builder.label :type
+            = builder.select :vehicle_type, VehicleType.all.collect { |v| [v.name, v.id] },
+              { include_blank: true }, class: 'form-control custom-select'
+
+          .form-check
+
+        = link_to 'Back', new_step1_transactions_path, class: 'btn btn-secondary', role: 'button'
+
+        | &nbsp; &nbsp;
+
+        = f.submit 'Continue', class: 'btn btn-primary btn-submit'

@@ -11,21 +11,37 @@ module SaleFormModel
     delegate *Vehicle.attribute_names.map { |attr| [attr, "#{attr}="] }.flatten, to: :vehicle
 
     def initialize(attributes)
-     @sale = Sale.new(attributes)
-     @sale.build_vehicle if attributes.blank?
-     @vehicle = @sale.vehicle
-     pr attributes.inspect
-     pr @vehicle.inspect
+      @sale = Sale.new(attributes)
+
+      if attributes.blank?
+        @sale.build_vehicle
+        @vehicle = @sale.vehicle
+      else
+        @vehicle = process_vehicle(attributes[:vehicle_attributes])
+        @sale.vehicle = @vehicle
+      end
+
+      pr attributes.inspect
+      pr @vehicle.inspect
     end
 
-    def vehicle_attributes=(attributes)
-      @vehicle.attributes.map do |name, value| 
-        @vehicle.send("#{name}=", value)
+    private
+
+    def process_vehicle(attributes)
+      if attributes.present?
+        return Vehicle.find_by_license_plate(attributes[:license_plate]) || @sale.vehicle
       end
+
+      @sale.vehicle
     end
   end
 
   class Step1 < Base
+    validates_with LicensePlateValidator
+
     validates :license_plate, presence: true
+  end
+
+  class Step2 < Base
   end
 end 

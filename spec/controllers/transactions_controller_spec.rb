@@ -16,4 +16,12 @@ RSpec.describe TransactionsController, type: :controller do
     it { is_expected.to respond_with_content_type :html }
     it { is_expected.to render_template :step1 }
   end
+
+  describe 'GET #step2' do
+    before { get :step2 }
+
+    it { is_expected.to respond_with :ok }
+    it { is_expected.to respond_with_content_type :html }
+    it { is_expected.to render_template :step2 }
+  end
 end

@@ -5,3 +5,9 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+unless VehicleType.any?
+  [{ name: 'Car', price: 5 }, { name: 'Truck', price: 10 }].each do |data|
+    VehicleType.create!(data)
+  end
+end

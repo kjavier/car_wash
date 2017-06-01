@@ -29,5 +29,6 @@ module CarWash
     config.generators.system_tests = nil
     
     config.eager_load_paths += %W(#{config.root}/app/form_models)
+    config.eager_load_paths += %W(#{config.root}/app/validators)
   end
 end
