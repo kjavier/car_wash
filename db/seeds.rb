@@ -11,3 +11,29 @@ unless VehicleType.any?
     VehicleType.create!(data)
   end
 end
+
+unless Vehicle.any?
+  Vehicle.create!(license_plate: 'xyz111', vehicle_type: VehicleType.first)
+  Vehicle.create!(license_plate: 'abc222', vehicle_type: VehicleType.first)
+  Vehicle.create!(license_plate: 'def334', vehicle_type: VehicleType.last)
+  Vehicle.create!(license_plate: 'fsh995', vehicle_type: VehicleType.last)
+end
+
+unless Sale.any?
+  Sale.create!(vehicle: Vehicle.first, has_mud_on_bed: true, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.first, has_mud_on_bed: true, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.first, has_mud_on_bed: false, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.first, has_mud_on_bed: false, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.second, has_mud_on_bed: true, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.second, has_mud_on_bed: true, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.second, has_mud_on_bed: false, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.second, has_mud_on_bed: false, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.third, has_mud_on_bed: true, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.third, has_mud_on_bed: true, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.third, has_mud_on_bed: false, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.third, has_mud_on_bed: false, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.fourth, has_mud_on_bed: true, with_bed_let_down: true)
+  Sale.create!(vehicle: Vehicle.fourth, has_mud_on_bed: true, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.fourth, has_mud_on_bed: false, with_bed_let_down: false)
+  Sale.create!(vehicle: Vehicle.fourth, has_mud_on_bed: false, with_bed_let_down: true)
+end

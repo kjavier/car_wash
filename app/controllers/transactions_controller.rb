@@ -1,10 +1,33 @@
 # frozen_string_literal: true
 
 class TransactionsController < ApplicationController
-  before_action :load_step, except: %i[index validate_license_plate validate_step]
+  before_action :load_step, except: %i[index edit update validate_license_plate validate_step]
 
   def index
     @sales = Sale.all.page(params[:page])
+  end
+
+  def edit
+    @sale = Sale.find(params[:id])
+  end
+
+  def create
+    if @step.sale.save
+      session[:sale_params] = nil
+      redirect_to transactions_url, notice: 'Transaction succesfully saved!'
+    else
+      redirect_to action: SaleFormModel::STEPS.first, alert: 'A problem occured while saving this transaction.'
+    end
+  end
+
+  def update  
+    @sale = Sale.find(params[:id])
+
+    if @sale.update(sale_params.except('vehicle_attributes'))
+      redirect_to edit_transaction_path(params[:id]), notice: 'Transaction successfully saved!'
+    else
+      render :edit
+    end
   end
 
   def validate_step
@@ -18,15 +41,6 @@ class TransactionsController < ApplicationController
       redirect_to action: next_step
     else
       render current_step
-    end
-  end
-
-  def create
-    if @step.sale.save
-      session[:sale_params] = nil
-      redirect_to transactions_url, notice: 'Transaction succesfully saved!'
-    else
-      redirect_to action: SaleFormModel::STEPS.first, alert: 'A problem occured while saving this transaction.'
     end
   end
 

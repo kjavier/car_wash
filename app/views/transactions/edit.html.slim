@@ -1,0 +1,43 @@
+.row
+  .col-lg-12
+    h4.m-b-30 Edit Transaction ##{@sale.id} 
+
+= render 'shared/notice'
+
+.row
+  .col-lg-12
+    .highlight
+      = form_for @sale, url: transaction_path do |f|
+        = render partial: 'shared/errors', locals: { object: @sale }
+
+        = f.fields_for :vehicle do |builder|
+          - disable = !builder.object.new_record?
+
+          .form-group
+            = builder.label :license_plate
+            = builder.text_field :license_plate, class: 'form-control', disabled: disable 
+          
+          .form-group
+            = builder.label :type
+            = builder.select :vehicle_type_id, VehicleType.all.collect { |v| [v.name, v.id] },
+              { include_blank: true }, class: 'form-control custom-select', disabled: disable 
+
+        .form-check
+          .row
+            .col-lg-6
+              = f.label :has_mud_on_bed, class: 'form-check-label' do
+                = f.check_box :has_mud_on_bed, class: 'form-check-input'
+                | Has mud on bed?
+            
+            .col-lg-6
+              = f.label :with_bed_let_down, class: 'form-check-label' do
+                = f.check_box :with_bed_let_down, class: 'form-check-input'
+                | With bed let down?
+
+        br
+
+        = link_to 'Back', transactions_path, class: 'btn btn-secondary', role: 'button'
+
+        | &nbsp; &nbsp;
+        
+        = f.submit 'Continue', class: 'btn btn-primary btn-submit'

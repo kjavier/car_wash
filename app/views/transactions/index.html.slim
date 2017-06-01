@@ -3,11 +3,7 @@
     .float-right
       = link_to 'New Transaction', new_step1_transactions_path, class: 'btn btn-primary' 
 
-- if flash[:notice].present?
-  .row
-    .col-lg-12
-      .alert.alert-success.m-t-20 role='alert'
-        = flash[:notice]
+= render 'shared/notice'
 
 .row
   .col-lg-12
@@ -15,6 +11,7 @@
       table.table.table-hover
         thead.thead-default
           tr
+            th #
             th License Plate
             th Type
             th Amount
@@ -25,6 +22,7 @@
         tbody
           - @sales.each do |sale|
             tr
+              td= sale.id
               td= link_to sale.license_plate, edit_transaction_path(sale)
               td= sale.vehicle_type
               td= sale.amount

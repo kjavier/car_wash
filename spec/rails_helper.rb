@@ -1,4 +1,4 @@
-ENV['RAILS_ENV'] ||= 'test'
+ENV['RAILS_ENV'] = 'test'
 
 if ARGV.grep(/spec\.rb/).empty?
   require 'simplecov'

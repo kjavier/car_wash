@@ -9,6 +9,16 @@ RSpec.describe TransactionsController, type: :controller do
     it { is_expected.to render_template :index }
   end
 
+  describe 'GET #edit' do
+    let(:sale) { Fabricate(:sale) }
+
+    before { get :edit, params: { id: sale.id } }
+
+    it { is_expected.to respond_with :ok }
+    it { is_expected.to respond_with_content_type :html }
+    it { is_expected.to render_template :edit }
+  end
+
   describe 'GET #step1' do
     before { get :step1 }
 
