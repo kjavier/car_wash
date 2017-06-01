@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LicensePlateValidator < ActiveModel::Validator
   def validate(record)
     if record.license_plate&.strip == '1111111'

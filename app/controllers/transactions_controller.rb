@@ -62,7 +62,7 @@ class TransactionsController < ApplicationController
 
   def sale_params 
     params.require(:sale).permit(:has_mud_on_bed, :with_bed_let_down,
-                                 vehicle_attributes: [:license_plate, :vehicle_type_id])
+                                 vehicle_attributes: %i[license_plate vehicle_type_id])
   end
 
   def current_step
